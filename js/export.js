@@ -21,6 +21,7 @@ window.ExcelExporter = (function () {
         'No': i + 1,
         'Tanggal': formatDate(e.tanggal),
         'Nama Pelanggan': e.nama || '-',
+        'RT': e.rt || '-',
         'Meter Awal (m³)': e.meterAwal,
         'Meter Akhir (m³)': e.meterAkhir,
         'Pemakaian (m³)': e.pemakaian,
@@ -37,6 +38,7 @@ window.ExcelExporter = (function () {
       { wch: 5 },   // No
       { wch: 18 },  // Tanggal
       { wch: 24 },  // Nama
+      { wch: 10 },  // RT
       { wch: 14 },  // Awal
       { wch: 14 },  // Akhir
       { wch: 14 },  // Pemakaian
@@ -51,11 +53,11 @@ window.ExcelExporter = (function () {
     const totalRow = summaryRow;
 
     setCell(ws, summaryRow, 0, 'RINGKASAN');
-    setCell(ws, summaryRow, 5, 'Total Pemakaian');
-    setCell(ws, summaryRow, 8, entries.reduce(function (s, e) { return s + e.pemakaian; }, 0));
+    setCell(ws, summaryRow, 6, 'Total Pemakaian');
+    setCell(ws, summaryRow, 9, entries.reduce(function (s, e) { return s + e.pemakaian; }, 0));
 
-    setCell(ws, totalRow, 5, 'GRAND TOTAL');
-    setCell(ws, totalRow, 8, entries.reduce(function (s, e) { return s + e.total; }, 0));
+    setCell(ws, totalRow, 6, 'GRAND TOTAL');
+    setCell(ws, totalRow, 9, entries.reduce(function (s, e) { return s + e.total; }, 0));
 
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Tagihan Air');
