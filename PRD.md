@@ -19,12 +19,12 @@
 **Formula:**
 ```
 Pemakaian = Meter Akhir - Meter Awal
-Total Tagihan = 5.000 + (Pemakaian × 3.000)
+Total Tagihan = 3.000 + (Pemakaian × 3.000)
 ```
 
 **Output Display:**
 - Pemakaian (m³)
-- Biaya Abonemen: Rp 5.000
+- Biaya Abonemen: Rp 3.000
 - Biaya Pemakaian: Rp [Pemakaian × 3.000]
 - **Total Tagihan: Rp [Total]**
 
@@ -87,7 +87,7 @@ Total Tagihan = 5.000 + (Pemakaian × 3.000)
 ├─────────────────────────────────────┤
 │  HASIL PERHITUNGAN                  │
 │  Pemakaian:      XX m³              │
-│  Abonemen:       Rp 5.000           │
+│  Abonemen:       Rp 3.000           │
 │  Biaya Pakai:    Rp XX.XXX          │
 │  ────────────────────────────────  │
 │  TOTAL:          Rp XX.XXX          │  ← Highlighted
@@ -127,7 +127,7 @@ Total Tagihan = 5.000 + (Pemakaian × 3.000)
 
 ## 7. Acceptance Criteria
 
-1. ✅ User enters Meter Awal=100, Meter Akhir=115 → Pemakaian=15, Total=Rp 50.000
+1. ✅ User enters Meter Awal=100, Meter Akhir=115 → Pemakaian=15, Total=Rp 48.000
 2. ✅ Invalid input (Akhir < Awal) shows inline error
 3. ✅ "Simpan" adds row to history table + localStorage
 4. ✅ "Export ke Excel" downloads `.xlsx` with all rows

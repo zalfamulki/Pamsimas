@@ -1,6 +1,6 @@
 /* Konfigurasi tarif & konstanta aplikasi */
 window.AppConfig = {
-  ABONEMEN: 5000,          // Rp
+  ABONEMEN: 3000,          // Rp
   TARIF_PER_M3: 3000,      // Rp / m³
   STORAGE_KEY: 'pamsimas_history_v1',
   APP_NAME: 'PAMSIMAS',
