@@ -278,7 +278,9 @@
   });
 
   /* ============ Info tarif ============ */
-  $('aboutBtn').addEventListener('click', function () {
+  /* Guard: elemen aboutBtn tidak ada di HTML → lewati agar init tidak crash */
+  const aboutBtn = $('aboutBtn');
+  if (aboutBtn) aboutBtn.addEventListener('click', function () {
     alert(
       'Ketentuan Tarif PAMSIMAS\n\n' +
       'Total Tagihan = Abonemen + (Pemakaian × Tarif per m³)\n\n' +
