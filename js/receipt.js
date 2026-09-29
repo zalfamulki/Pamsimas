@@ -21,6 +21,7 @@ window.Receipt = (function () {
     $('rcNo').textContent = receiptNo || autoNumber(data);
     $('rcDate').textContent = formatDate(data.tanggal);
     $('rcName').textContent = data.nama || '-';
+    $('rcRt').textContent = data.rt || '-';
     $('rcAwal').textContent = cfg.formatNumber(data.meterAwal) + ' m³';
     $('rcAkhir').textContent = cfg.formatNumber(data.meterAkhir) + ' m³';
     $('rcUsage').textContent = cfg.formatNumber(data.pemakaian) + ' m³';
