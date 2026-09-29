@@ -1,0 +1,77 @@
+/* ============================================
+   installed.css — versi HEMAT khusus app ter-install
+   Seluruh isi hanya aktif saat dibuka sebagai PWA
+   ter-install (display-mode: standalone): HP & PC.
+   Versi browser mengabaikan file ini → animasi penuh.
+   Muat SETELAH themes.css agar menang.
+   ============================================ */
+
+@media (display-mode: standalone) {
+
+  /* Blob latar: diam (tanpa melayang), blur diringankan */
+  body::before,
+  body::after {
+    animation: none;
+    filter: blur(60px);
+    opacity: .4;
+  }
+
+  /* Partikel gelembung: matikan total (paling berat) */
+  .bubbles-container,
+  .bubble {
+    display: none;
+  }
+
+  /* Kaca: blur 24px → 14px (beda nyaris tak terlihat) */
+  .card {
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    backdrop-filter: blur(14px) saturate(160%);
+  }
+
+  .app-header {
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    backdrop-filter: blur(14px) saturate(160%);
+  }
+
+  .app-footer {
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    backdrop-filter: blur(12px) saturate(150%);
+  }
+
+  .toast {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+
+  .badge {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  /* Shimmer tombol: matikan (animasi tiap 3,5 detik) */
+  .btn-primary::after {
+    display: none;
+  }
+
+  /* Denyut badge online: matikan */
+  .badge-online::before {
+    animation: none;
+  }
+
+  /* Ikon empty-state: matikan melayang */
+  .empty-state-icon-wrap {
+    animation: none;
+  }
+
+  /* Baris tabel: tanpa slide-in ulang tiap render */
+  .data-table tbody tr {
+    animation: none;
+  }
+
+  /* Splash (muncul tiap buka app): sederhanakan */
+  .splash-bg-glow,
+  .splash-ripple,
+  .splash-logo {
+    animation: none;
+  }
+}
