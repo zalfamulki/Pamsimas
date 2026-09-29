@@ -1,0 +1,198 @@
+/* ============================================
+   buttons.css — tombol dengan shimmer effect & ripple wave, badge interaktif
+   ============================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  font-size: .95rem;
+  font-weight: 700;
+  font-family: var(--font);
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  line-height: 1.2;
+  position: relative;
+  overflow: hidden;
+  transition: transform .15s ease, box-shadow .2s ease, filter .2s ease, background .2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px) scale(.98);
+}
+
+.btn:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  filter: grayscale(0.4);
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(2, 132, 199, .35);
+}
+
+.btn-sm {
+  padding: 9px 15px;
+  font-size: .84rem;
+  border-radius: 12px;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* Primary Button with Shimmer Sweep Effect */
+.btn-primary {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #4f46e5 100%);
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.35);
+}
+
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-20deg);
+  animation: btnShimmer 3.5s infinite;
+  pointer-events: none;
+}
+
+@keyframes btnShimmer {
+  0%, 65% { left: -120%; }
+  100% { left: 180%; }
+}
+
+.btn-primary:hover:not(:disabled) {
+  box-shadow: 0 8px 25px rgba(2, 132, 199, 0.5), 0 0 15px rgba(56, 189, 248, 0.4);
+}
+
+/* Success Button */
+.btn-success {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.32);
+}
+
+.btn-success:hover:not(:disabled) {
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.45);
+}
+
+/* Outline Button */
+.btn-outline {
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--biru);
+  border: 1.5px solid rgba(2, 132, 199, 0.35);
+}
+
+.btn-outline:hover:not(:disabled) {
+  background: #ffffff;
+  border-color: var(--biru);
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.18);
+}
+
+/* Ghost Button */
+.btn-ghost {
+  background: rgba(2, 132, 199, 0.1);
+  color: var(--biru);
+  border: 1px solid rgba(2, 132, 199, 0.2);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: rgba(2, 132, 199, 0.18);
+  border-color: rgba(2, 132, 199, 0.35);
+}
+
+.btn-danger-ghost {
+  background: transparent;
+  color: var(--merah);
+  border: 1px solid transparent;
+}
+
+.btn-danger-ghost:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+/* Ripple effect span added on click */
+.btn .ripple-wave {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: rippleClick .55s linear;
+  background-color: rgba(255, 255, 255, 0.45);
+  pointer-events: none;
+}
+
+@keyframes rippleClick {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* ---------- Badge ---------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .75rem;
+  font-weight: 700;
+  padding: 6px 13px;
+  border-radius: 999px;
+  letter-spacing: .3px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.badge::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.badge-online {
+  color: var(--hijau-tua);
+  background: rgba(209, 250, 229, 0.8);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.badge-online::before {
+  animation: denyut 1.8s ease-in-out infinite;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+}
+
+.badge-offline {
+  color: var(--merah);
+  background: rgba(254, 226, 226, 0.8);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+@keyframes denyut {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .45; transform: scale(.75); }
+}
+
+.badge-count {
+  color: var(--teks-lembut);
+}
+
+.badge-count::before { display: none; }
