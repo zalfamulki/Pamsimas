@@ -1,0 +1,137 @@
+/* ============================================
+   forms.css — input interaktif, glowing focus, error inline, catatan rumus
+   ============================================ */
+
+.field {
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.field label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .86rem;
+  font-weight: 600;
+  color: var(--teks);
+  margin-bottom: 7px;
+  transition: color .2s ease;
+}
+
+.field:focus-within label {
+  color: var(--biru);
+}
+
+.optional {
+  font-weight: 400;
+  font-size: .8rem;
+  color: var(--teks-lembut);
+}
+
+.field input {
+  width: 100%;
+  padding: 13px 16px;
+  font-size: 1rem;
+  font-family: var(--font);
+  color: var(--teks);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1.5px solid rgba(2, 132, 199, 0.15);
+  border-radius: 14px;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease, transform .15s ease;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.field input::placeholder {
+  color: #94a3b8;
+  transition: opacity .2s;
+}
+
+.field input:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(2, 132, 199, 0.35);
+}
+
+.field input:focus {
+  outline: none;
+  border-color: var(--biru);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.18), 0 4px 12px rgba(2, 132, 199, 0.08);
+  transform: translateY(-1px);
+}
+
+.field input.invalid {
+  border-color: var(--merah);
+  background: rgba(239, 68, 68, 0.05);
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.14);
+}
+
+.field input.invalid.shake {
+  animation: goyang .35s ease;
+}
+
+@keyframes goyang {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(7px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(3px); }
+}
+
+/* Pesan error inline */
+.field-err {
+  display: block;
+  margin-top: 6px;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--merah);
+  animation: errMuncul .2s ease-out;
+}
+
+.field-err:empty { display: none; }
+
+@keyframes errMuncul {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hilangkan spinner angka bawaan browser */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.formula-note {
+  background: linear-gradient(120deg, rgba(2, 132, 199, 0.1), rgba(6, 182, 212, 0.1));
+  border: 1px solid rgba(2, 132, 199, 0.2);
+  color: var(--biru-tua);
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-size: .88rem;
+  font-weight: 500;
+  margin: 4px 0 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.formula-note svg {
+  flex-shrink: 0;
+  color: var(--biru);
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
