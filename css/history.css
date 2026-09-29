@@ -1,0 +1,185 @@
+/* ============================================
+   history.css — riwayat: empty state ilustratif, tabel dengan row animation, ringkasan
+   ============================================ */
+
+/* Empty State Modern Berilustrasi */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 38px 20px;
+  margin: 14px 0 0;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1.5px dashed rgba(2, 132, 199, 0.25);
+  border-radius: 20px;
+  transition: background .2s ease, border-color .2s ease;
+}
+
+.empty-state-icon-wrap {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(2, 132, 199, 0.1) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.1);
+  animation: floatEmptyIcon 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes floatEmptyIcon {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-7px) scale(1.05); }
+}
+
+.empty-state-icon {
+  width: 36px;
+  height: 36px;
+  color: var(--biru);
+}
+
+.empty-state-title {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--teks);
+}
+
+.empty-state-text {
+  margin: 0;
+  color: var(--teks-lembut);
+  font-size: .88rem;
+  max-width: 360px;
+  line-height: 1.45;
+}
+
+/* Tabel Riwayat */
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .88rem;
+  min-width: 740px;
+}
+
+.data-table th,
+.data-table td {
+  padding: 12px 14px;
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.data-table th {
+  background: rgba(2, 132, 199, 0.09);
+  color: var(--biru-tua);
+  font-weight: 700;
+  font-size: .76rem;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+}
+
+.data-table tbody tr {
+  transition: background .15s ease, transform .15s ease;
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.data-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.data-table tbody tr:hover {
+  background: rgba(2, 132, 199, 0.08);
+}
+
+/* Row entrance animation for newly added items */
+.data-table tbody tr.row-new {
+  animation: rowSlideIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes rowSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    background-color: rgba(56, 189, 248, 0.25);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.data-table .num {
+  font-variant-numeric: tabular-nums;
+}
+
+.data-table .total-cell {
+  font-weight: 800;
+  color: var(--hijau-tua);
+}
+
+.row-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.icon-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 7px;
+  border-radius: 10px;
+  color: var(--teks-lembut);
+  display: inline-flex;
+  line-height: 0;
+  transition: background .15s, color .15s, transform .12s;
+}
+
+.icon-btn:hover {
+  background: rgba(2, 132, 199, 0.12);
+  color: var(--biru);
+}
+
+.icon-btn:active {
+  transform: scale(.9);
+}
+
+.icon-btn.danger:hover {
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--merah);
+}
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 14px 18px;
+  background: linear-gradient(120deg, rgba(16, 185, 129, 0.15), rgba(2, 132, 199, 0.12));
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 16px;
+  font-size: .92rem;
+}
+
+.summary strong {
+  color: var(--hijau-tua);
+  font-size: 1.15rem;
+  margin-left: 4px;
+}
