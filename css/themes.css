@@ -51,6 +51,18 @@
   }
   .field input::placeholder { color: #64748b; }
 
+  .field select {
+    background-color: rgba(30, 41, 59, 0.7);
+    border-color: rgba(255, 255, 255, 0.14);
+    color: var(--teks);
+  }
+
+  .field select:hover { background-color: rgba(30, 41, 59, 0.9); }
+  .field select:focus {
+    background-color: rgba(15, 23, 42, 0.95);
+    border-color: var(--biru-muda);
+  }
+
   .result-item {
     background: rgba(30, 41, 59, 0.6);
     border-color: rgba(255, 255, 255, 0.1);
