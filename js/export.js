@@ -33,6 +33,17 @@ window.ExcelExporter = (function () {
 
     const ws = XLSX.utils.json_to_sheet(rows);
 
+    // Format rupiah Indonesia: sel tetap angka (bisa di-SUM),
+    // tampil sebagai "Rp. 25.000". [$‑421] = locale Indonesia
+    // agar titik ribuan muncul di semua locale Excel.
+    const RUPIAH_FMT = '[$-421]"Rp. "#,##0';
+    for (let r = 1; r <= entries.length; r++) {
+      [7, 8, 9].forEach(function (c) {
+        const ref = XLSX.utils.encode_cell({ r: r, c: c });
+        if (ws[ref]) ws[ref].z = RUPIAH_FMT;
+      });
+    }
+
     // Lebar kolom agar rapi
     ws['!cols'] = [
       { wch: 5 },   // No
@@ -57,7 +68,7 @@ window.ExcelExporter = (function () {
     setCell(ws, summaryRow, 9, entries.reduce(function (s, e) { return s + e.pemakaian; }, 0));
 
     setCell(ws, totalRow, 6, 'GRAND TOTAL');
-    setCell(ws, totalRow, 9, entries.reduce(function (s, e) { return s + e.total; }, 0));
+    setCell(ws, totalRow, 9, entries.reduce(function (s, e) { return s + e.total; }, 0), RUPIAH_FMT);
 
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Tagihan Air');
@@ -67,9 +78,10 @@ window.ExcelExporter = (function () {
     return true;
   }
 
-  function setCell(ws, r, c, value) {
+  function setCell(ws, r, c, value, fmt) {
     const ref = XLSX.utils.encode_cell({ r: r, c: c });
     ws[ref] = { t: typeof value === 'number' ? 'n' : 's', v: value };
+    if (fmt) ws[ref].z = fmt;
   }
 
   function formatDate(iso) {
