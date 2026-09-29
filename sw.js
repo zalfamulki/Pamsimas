@@ -2,13 +2,23 @@
    Strategi: precache app-shell saat install, cache-first saat fetch,
    plus cache runtime untuk skrip SheetJS dari CDN. */
 
-const VERSION = 'pamsimas-v1';
+const VERSION = 'pamsimas-v5';
 
 const APP_SHELL = [
   './',
   './index.html',
-  './css/style.css',
+  './css/splash.css',
+  './css/base.css',
+  './css/header.css',
+  './css/buttons.css',
+  './css/forms.css',
+  './css/result.css',
+  './css/history.css',
+  './css/footer.css',
+  './css/toast.css',
+  './css/themes.css',
   './css/print.css',
+  './js/splash.js',
   './js/config.js',
   './js/calculator.js',
   './js/storage.js',
