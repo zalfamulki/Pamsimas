@@ -25,6 +25,7 @@
   const awalInput = $('meterAwal');
   const akhirInput = $('meterAkhir');
   const namaInput = $('pelanggan');
+  const rtInput = $('rt');
   const kurangGerak = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function clearFieldState() {
@@ -74,6 +75,7 @@
 
     lastResult = Object.assign({}, result, {
       nama: namaInput.value.trim(),
+      rt: rtInput.value,
       meterAwal: Number(awalRaw),
       meterAkhir: Number(akhirRaw),
       tanggal: new Date().toISOString()
@@ -108,13 +110,23 @@
       tryCalculate({ silent: true, scroll: false });
     });
   });
-  namaInput.addEventListener('input', function () {
-    if (lastResult) {
-      lastResult.nama = namaInput.value.trim();
-      $('resultName').hidden = !lastResult.nama;
-      if (lastResult.nama) $('resultName').textContent = 'Pelanggan: ' + lastResult.nama;
-    }
-  });
+  function renderIdentity(r) {
+    const parts = [];
+    if (r.nama) parts.push('Pelanggan: ' + r.nama);
+    if (r.rt) parts.push(r.rt);
+    $('resultName').hidden = parts.length === 0;
+    $('resultName').textContent = parts.join(' • ');
+  }
+
+  function syncIdentity() {
+    if (!lastResult) return;
+    lastResult.nama = namaInput.value.trim();
+    lastResult.rt = rtInput.value;
+    renderIdentity(lastResult);
+  }
+
+  namaInput.addEventListener('input', syncIdentity);
+  rtInput.addEventListener('change', syncIdentity);
 
   form.addEventListener('reset', function () {
     clearFieldState();
@@ -142,8 +154,7 @@
   }
 
   function renderResult(r, animate) {
-    $('resultName').hidden = !r.nama;
-    if (r.nama) $('resultName').textContent = 'Pelanggan: ' + r.nama;
+    renderIdentity(r);
     $('rAbonemen').textContent = cfg.formatRupiah(r.abonemen);
     if (animate) {
       animateValue($('rPemakaian'), r.pemakaian, function (v) { return cfg.formatNumber(v) + ' m³'; });
@@ -162,6 +173,7 @@
 
     const saved = Store.add({
       nama: lastResult.nama,
+      rt: lastResult.rt || '',
       meterAwal: lastResult.meterAwal,
       meterAkhir: lastResult.meterAkhir,
       pemakaian: lastResult.pemakaian,
@@ -230,6 +242,7 @@
       tr.innerHTML =
         '<td class="num">' + (i + 1) + '</td>' +
         '<td>' + escapeHtml(e.nama || '-') + '</td>' +
+        '<td>' + escapeHtml(e.rt || '-') + '</td>' +
         '<td class="num">' + cfg.formatNumber(e.meterAwal) + '</td>' +
         '<td class="num">' + cfg.formatNumber(e.meterAkhir) + '</td>' +
         '<td class="num">' + cfg.formatNumber(e.pemakaian) + '</td>' +
