@@ -1,0 +1,76 @@
+/* ============================================
+   header.css — navbar kaca full-bleed
+   Kiri: logo+brand | Kanan: status + pasang app
+   ============================================ */
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.65);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  backdrop-filter: blur(24px) saturate(190%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 20px rgba(2, 132, 199, 0.06);
+  transition: background .2s ease, border-color .2s ease;
+}
+
+.header-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-right: auto;
+  text-decoration: none;
+}
+
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #4f46e5 100%);
+  padding: 6px;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.35);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.brand:hover .brand-logo {
+  transform: scale(1.05) rotate(-2deg);
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.45);
+}
+
+.brand-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: .5px;
+  line-height: 1.15;
+  background: linear-gradient(120deg, #0284c7 0%, #0369a1 40%, #4f46e5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-sub {
+  margin: 2px 0 0;
+  font-size: .78rem;
+  font-weight: 500;
+  color: var(--teks-lembut);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
