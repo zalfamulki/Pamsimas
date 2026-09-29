@@ -1,0 +1,171 @@
+/* ============================================
+   splash.css — Splash screen animasi gaya mobile/Flutter
+   ============================================ */
+
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: radial-gradient(circle at center, #0284c7 0%, #0369a1 45%, #075985 80%, #0c4a6e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: opacity .5s cubic-bezier(0.4, 0, 0.2, 1), transform .5s cubic-bezier(0.4, 0, 0.2, 1), visibility .5s;
+  overflow: hidden;
+}
+
+.splash-screen.fade-out {
+  opacity: 0;
+  transform: scale(1.04);
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/* Background water ripples */
+.splash-bg-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.35) 0%, rgba(14, 165, 233, 0.1) 50%, transparent 70%);
+  border-radius: 50%;
+  animation: splashPulse 3s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.splash-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.splash-logo-wrap {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+/* Ripple rings radiating outward */
+.splash-ripple {
+  position: absolute;
+  inset: -15px;
+  border-radius: 50%;
+  border: 2px solid rgba(125, 211, 252, 0.6);
+  opacity: 0;
+  animation: splashRipple 2.2s cubic-bezier(0.1, 0.7, 0.1, 1) infinite;
+}
+
+.splash-ripple:nth-child(2) {
+  animation-delay: .7s;
+}
+
+.splash-ripple:nth-child(3) {
+  animation-delay: 1.4s;
+}
+
+@keyframes splashRipple {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.splash-logo {
+  width: 90px;
+  height: 90px;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25), 0 0 40px rgba(56, 189, 248, 0.6);
+  animation: splashLogoFloat 2s ease-in-out infinite alternate;
+  position: relative;
+  z-index: 3;
+}
+
+@keyframes splashLogoFloat {
+  0% {
+    transform: translateY(0) scale(0.98);
+  }
+  100% {
+    transform: translateY(-6px) scale(1.03);
+  }
+}
+
+.splash-title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.3), 0 0 25px rgba(56, 189, 248, 0.5);
+  animation: splashTextIn .8s ease-out both;
+}
+
+.splash-sub {
+  margin: 6px 0 28px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #bae6fd;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  animation: splashTextIn .8s ease-out .15s both;
+}
+
+@keyframes splashTextIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Progress bar at bottom of splash */
+.splash-progress-track {
+  width: 180px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.splash-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #38bdf8, #ffffff);
+  border-radius: 999px;
+  box-shadow: 0 0 10px #38bdf8;
+  animation: splashProgress 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes splashProgress {
+  0% { width: 0%; }
+  35% { width: 45%; }
+  70% { width: 85%; }
+  100% { width: 100%; }
+}
+
+@keyframes splashPulse {
+  0% { transform: scale(0.9); opacity: 0.3; }
+  100% { transform: scale(1.15); opacity: 0.6; }
+}
