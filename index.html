@@ -5,27 +5,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PAMSIMAS — Kalkulator Tagihan Air</title>
   <meta name="description" content="Kalkulator tagihan air PAMSIMAS: input meter awal & akhir, hitung total tagihan, cetak struk, dan ekspor ke Excel. Bisa dipakai offline.">
-  <meta name="theme-color" content="#0066cc">
+  <meta name="theme-color" content="#0284c7">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/splash.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/buttons.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/result.css">
+  <link rel="stylesheet" href="css/history.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/toast.css">
+  <link rel="stylesheet" href="css/themes.css">
   <link rel="stylesheet" href="css/print.css" media="print">
 </head>
 <body>
+  <noscript><div class="noscript-banner">Aplikasi PAMSIMAS membutuhkan JavaScript. Aktifkan JavaScript di browser lalu muat ulang halaman.</div></noscript>
+
+  <!-- SPLASH SCREEN (Animasi Mobile / Flutter Style) -->
+  <div id="splashScreen" class="splash-screen" aria-hidden="true">
+    <div class="splash-bg-glow"></div>
+    <div class="splash-content">
+      <div class="splash-logo-wrap">
+        <div class="splash-ripple"></div>
+        <div class="splash-ripple"></div>
+        <div class="splash-ripple"></div>
+        <img src="icons/icon.svg" alt="PAMSIMAS" class="splash-logo" width="90" height="90">
+      </div>
+      <h1 class="splash-title">PAMSIMAS</h1>
+      <p class="splash-sub">Kalkulator Tagihan Air &amp; Sanitasi</p>
+      <div class="splash-progress-track">
+        <div class="splash-progress-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTIKEL GELEMBUNG LATAR BELAKANG -->
+  <div class="bubbles-container" aria-hidden="true">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
 
   <header class="app-header">
-    <div class="container header-inner">
+    <div class="header-inner">
       <div class="brand">
-        <img src="icons/icon.svg" alt="" class="brand-logo" width="40" height="40">
+        <img src="icons/icon.svg" alt="" class="brand-logo" width="44" height="44">
         <div>
           <h1 class="brand-title">PAMSIMAS</h1>
           <p class="brand-sub">Kalkulator Tagihan Air</p>
         </div>
       </div>
       <div class="header-actions">
-        <span id="netStatus" class="badge badge-online" hidden>Online</span>
-        <button id="installBtn" class="btn btn-ghost btn-sm" hidden>
+        <span id="netStatus" class="badge badge-online">Online</span>
+        <button id="installBtn" class="btn btn-ghost btn-sm">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Pasang App
         </button>
@@ -37,32 +79,47 @@
 
     <!-- FORM INPUT -->
     <section class="card" aria-labelledby="formTitle">
-      <h2 id="formTitle" class="card-title">Input Pembacaan Meter</h2>
+      <h2 id="formTitle" class="card-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--biru)" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        Input Pembacaan Meter
+      </h2>
 
       <form id="billForm" novalidate>
         <div class="field">
-          <label for="pelanggan">Nama Pelanggan <span class="optional">(opsional)</span></label>
+          <label for="pelanggan">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Nama Pelanggan <span class="optional">(opsional)</span>
+          </label>
           <input type="text" id="pelanggan" maxlength="60" placeholder="cth. Siti Aminah" autocomplete="off">
         </div>
 
         <div class="field-row">
           <div class="field">
-            <label for="meterAwal">Meter Awal (m³)</label>
-            <input type="number" id="meterAwal" min="0" step="any" inputmode="decimal" placeholder="0" required>
+            <label for="meterAwal">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Meter Awal (m³)
+            </label>
+            <input type="number" id="meterAwal" min="0" step="any" inputmode="decimal" placeholder="0" required aria-describedby="errAwal">
+            <small class="field-err" id="errAwal" role="alert"></small>
           </div>
           <div class="field">
-            <label for="meterAkhir">Meter Akhir (m³)</label>
-            <input type="number" id="meterAkhir" min="0" step="any" inputmode="decimal" placeholder="0" required>
+            <label for="meterAkhir">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 8 14"/></svg>
+              Meter Akhir (m³)
+            </label>
+            <input type="number" id="meterAkhir" min="0" step="any" inputmode="decimal" placeholder="0" required aria-describedby="errAkhir">
+            <small class="field-err" id="errAkhir" role="alert"></small>
           </div>
         </div>
 
-        <p class="formula-note" id="formulaNote">
-          Total Tagihan = Rp 5.000 + (pemakaian × Rp 3.000)
-        </p>
+        <div class="formula-note" id="formulaNote">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <span>Total Tagihan = Rp 5.000 + (pemakaian × Rp 3.000)</span>
+        </div>
 
         <div class="form-actions">
-          <button type="submit" class="btn btn-primary btn-block">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="16" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="16" y1="14" x2="16" y2="18"/><line x1="8" y1="18" x2="12" y2="18"/></svg>
+          <button type="submit" class="btn btn-primary btn-block" id="calcBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="16" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="16" y1="14" x2="16" y2="18"/><line x1="8" y1="18" x2="12" y2="18"/></svg>
             Hitung Tagihan
           </button>
           <button type="reset" class="btn btn-outline" id="resetBtn">Bersihkan</button>
@@ -72,7 +129,10 @@
 
     <!-- HASIL -->
     <section class="card card-result" id="resultCard" hidden aria-live="polite">
-      <h2 class="card-title">Hasil Perhitungan</h2>
+      <h2 class="card-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--hijau)" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        Hasil Perhitungan
+      </h2>
 
       <p class="result-name" id="resultName" hidden></p>
 
@@ -110,7 +170,10 @@
     <!-- RIWAYAT -->
     <section class="card" aria-labelledby="histTitle">
       <div class="card-head">
-        <h2 id="histTitle" class="card-title">Riwayat Sesi Ini</h2>
+        <h2 id="histTitle" class="card-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--biru)" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Riwayat Sesi Ini
+        </h2>
         <div class="card-head-actions">
           <span class="badge badge-count" id="histCount">0 entri</span>
           <button type="button" class="btn btn-success btn-sm" id="exportBtn" disabled>
@@ -121,7 +184,17 @@
         </div>
       </div>
 
-      <p class="empty-msg" id="emptyMsg">Belum ada data. Hitung tagihan lalu tekan <strong>Simpan &amp; Tambah Baru</strong>.</p>
+      <!-- EMPTY STATE DENGAN ILUSTRASI KRAN / AIR -->
+      <div class="empty-state" id="emptyState">
+        <div class="empty-state-icon-wrap">
+          <svg class="empty-state-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+            <path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-4-3.5-4-6.8"/>
+          </svg>
+        </div>
+        <h3 class="empty-state-title">Belum Ada Riwayat Sesi</h3>
+        <p class="empty-state-text">Hitung tagihan air lalu tekan tombol <strong>Simpan &amp; Tambah Baru</strong> untuk mencatat ke riwayat.</p>
+      </div>
 
       <div class="table-wrap" id="tableWrap" hidden>
         <table class="data-table">
@@ -183,15 +256,30 @@
 
   <footer class="app-footer">
     <div class="container">
-      <p>Data tersimpan di browser ini (tanpa server). Gunakan <strong>Ekspor Excel</strong> untuk backup.</p>
-      <button type="button" class="btn btn-ghost btn-sm" id="aboutBtn">Ketentuan Tarif</button>
+      <p class="footer-copyright">© 2026 PAMSIMAS &mdash; Penyediaan Air Minum &amp; Sanitasi Masyarakat &nbsp;|&nbsp; Copyright by lukman &amp; ZallTech</p>
     </div>
   </footer>
 
   <div id="toast" class="toast" hidden></div>
 
-  <!-- SheetJS untuk ekspor Excel -->
+  <!-- Splash Screen Script -->
+  <script src="js/splash.js"></script>
+
+  <!-- SheetJS untuk ekspor Excel (CDN utama + cadangan bila gagal dimuat) -->
   <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+  <script>
+    if (typeof XLSX === 'undefined') {
+      var __xlsxFallback = document.createElement('script');
+      __xlsxFallback.src = 'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js';
+      __xlsxFallback.onerror = function () {
+        window.addEventListener('DOMContentLoaded', function () {
+          var b = document.getElementById('exportBtn');
+          if (b) b.title = 'Library Excel tidak dapat dimuat (periksa koneksi internet).';
+        });
+      };
+      document.head.appendChild(__xlsxFallback);
+    }
+  </script>
 
   <script src="js/config.js"></script>
   <script src="js/calculator.js"></script>
