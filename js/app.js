@@ -20,6 +20,53 @@
 
   window.App = { toast: toast };
 
+  /* ============ Navbar: pengalihan menu ============ */
+  const navTabs = document.querySelectorAll('.nav-tab');
+  const menuViews = document.querySelectorAll('.menu-view');
+
+  function showView(viewId) {
+    menuViews.forEach(function (view) {
+      view.hidden = view.id !== viewId;
+    });
+    navTabs.forEach(function (tab) {
+      const active = tab.dataset.view === viewId;
+      tab.classList.toggle('active', active);
+      tab.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function getHashForView(viewId) {
+    if (viewId === 'viewTagihan') return '#tagihan';
+    if (viewId === 'viewSetoran') return '#setoran';
+    if (viewId === 'viewStruktur') return '#struktur';
+    return '#beranda';
+  }
+
+  navTabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      showView(tab.dataset.view);
+      const hash = getHashForView(tab.dataset.view);
+      history.replaceState(null, '', location.pathname + location.search + hash);
+    });
+  });
+
+  /* Tombol alih menu dari dalam Beranda */
+  document.querySelectorAll('[data-switch-view]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const targetView = btn.getAttribute('data-switch-view');
+      showView(targetView);
+      const hash = getHashForView(targetView);
+      history.replaceState(null, '', location.pathname + location.search + hash);
+    });
+  });
+
+  /* Dukung link langsung / reload dengan hash */
+  if (location.hash === '#tagihan') showView('viewTagihan');
+  else if (location.hash === '#setoran') showView('viewSetoran');
+  else if (location.hash === '#struktur') showView('viewStruktur');
+  else showView('viewBeranda');
+
   /* ============ Form Hitung ============ */
   const form = $('billForm');
   const awalInput = $('meterAwal');

@@ -4,7 +4,6 @@
 
 :root {
   --biru: #0284c7;
-  --biru-muda: #38bdf8;
   --biru-tua: #0369a1;
   --toska: #06b6d4;
   --ungu: #6366f1;
@@ -179,8 +178,10 @@ main.container {
   box-shadow: 0 16px 42px rgba(2, 132, 199, 0.14), 0 0 1px rgba(56, 189, 248, 0.4);
 }
 
-main.container > .card:nth-child(2) { animation-delay: .08s; }
-main.container > .card:nth-child(3) { animation-delay: .16s; }
+main.container > .card:nth-child(2),
+.menu-view > .card:nth-child(2) { animation-delay: .08s; }
+main.container > .card:nth-child(3),
+.menu-view > .card:nth-child(3) { animation-delay: .16s; }
 
 @keyframes muncul {
   from { opacity: 0; transform: translateY(18px) scale(.98); }

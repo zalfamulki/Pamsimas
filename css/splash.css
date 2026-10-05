@@ -114,6 +114,16 @@
   animation: splashTextIn .8s ease-out both;
 }
 
+.splash-village {
+  margin: 4px 0 28px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #e0f2fe;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+  animation: splashTextIn .8s ease-out .08s both;
+}
+
 .splash-sub {
   margin: 6px 0 28px;
   font-size: 0.9rem;
@@ -123,6 +133,8 @@
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   animation: splashTextIn .8s ease-out .15s both;
 }
+/* .splash-sub tidak lagi dipakai di HTML (teks kalkulator dihapus),
+   style disimpan agar aman bila dipakai lagi. */
 
 @keyframes splashTextIn {
   from {

@@ -38,6 +38,11 @@
     backdrop-filter: blur(12px) saturate(150%);
   }
 
+  .nav-inner {
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    backdrop-filter: blur(12px) saturate(150%);
+  }
+
   .toast {
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);

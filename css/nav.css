@@ -1,0 +1,90 @@
+/* ============================================
+   nav.css — navbar SEBARIS dengan header
+   Satu field kaca tipis: pill di tengah baris,
+   menyusut & bergeser bila ruang sempit.
+   Menu: Beranda | Tagihan Air | Setoran | Struktur Pengurus
+   ============================================ */
+
+.app-nav {
+  min-width: 0;
+  padding: 0;
+}
+
+.nav-inner {
+  margin: 0 auto;
+  display: flex;
+  gap: 6px;
+  width: fit-content;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 999px;
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: 0 2px 12px rgba(2, 132, 199, 0.1);
+}
+
+.nav-inner::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.nav-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  border-radius: 999px;
+  font-family: var(--font);
+  font-size: .83rem;
+  font-weight: 700;
+  letter-spacing: .2px;
+  color: var(--teks-lembut);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color .2s ease, background .2s ease, box-shadow .2s ease, transform .12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-tab:hover:not(.active) {
+  color: var(--biru);
+  background: rgba(2, 132, 199, 0.08);
+}
+
+.nav-tab:active {
+  transform: scale(.97);
+}
+
+.nav-tab:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.35);
+}
+
+.nav-tab.active {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 60%, #4f46e5 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.38);
+}
+
+.nav-tab svg {
+  flex-shrink: 0;
+}
+
+/* ---------- View switching ---------- */
+.menu-view {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  animation: muncul .35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ---------- Tanda field wajib ---------- */
+.wajib {
+  color: var(--merah);
+  font-weight: 700;
+}

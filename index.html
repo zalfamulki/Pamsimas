@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PAMSIMAS — Kalkulator Tagihan Air</title>
-  <meta name="description" content="Kalkulator tagihan air PAMSIMAS: input meter awal & akhir, hitung total tagihan, cetak struk, dan ekspor ke Excel. Bisa dipakai offline.">
+  <title>PAMSIMAS — Kampung Sukamanah</title>
+  <meta name="description" content="PAMSIMAS Kampung Sukamanah: input meter awal & akhir, hitung total tagihan, cetak struk, dan ekspor ke Excel. Bisa dipakai offline.">
   <meta name="theme-color" content="#0284c7">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="css/splash.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/beranda.css">
+  <link rel="stylesheet" href="css/struktur.css">
   <link rel="stylesheet" href="css/buttons.css">
   <link rel="stylesheet" href="css/forms.css">
   <link rel="stylesheet" href="css/result.css">
@@ -36,7 +39,7 @@
         <img src="icons/icon.svg" alt="PAMSIMAS" class="splash-logo" width="90" height="90">
       </div>
       <h1 class="splash-title">PAMSIMAS</h1>
-      <p class="splash-sub">Kalkulator Tagihan Air &amp; Sanitasi</p>
+      <p class="splash-village">Kampung Sukamanah</p>
       <div class="splash-progress-track">
         <div class="splash-progress-bar"></div>
       </div>
@@ -63,9 +66,30 @@
         <img src="icons/icon.svg" alt="" class="brand-logo" width="44" height="44">
         <div>
           <h1 class="brand-title">PAMSIMAS</h1>
-          <p class="brand-sub">Kalkulator Tagihan Air</p>
+          <p class="brand-village">Kampung Sukamanah</p>
         </div>
       </div>
+      <!-- NAVBAR — sebaris dengan header, satu field kaca -->
+      <nav class="app-nav" aria-label="Menu utama">
+        <div class="nav-inner" role="tablist">
+          <button type="button" class="nav-tab active" id="tabBeranda" role="tab" aria-selected="true" aria-controls="viewBeranda" data-view="viewBeranda">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Beranda
+          </button>
+          <button type="button" class="nav-tab" id="tabTagihan" role="tab" aria-selected="false" aria-controls="viewTagihan" data-view="viewTagihan">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+            Tagihan Air
+          </button>
+          <button type="button" class="nav-tab" id="tabSetoran" role="tab" aria-selected="false" aria-controls="viewSetoran" data-view="viewSetoran">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg>
+            Setoran
+          </button>
+          <button type="button" class="nav-tab" id="tabStruktur" role="tab" aria-selected="false" aria-controls="viewStruktur" data-view="viewStruktur">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Struktur Pengurus
+          </button>
+        </div>
+      </nav>
       <div class="header-actions">
         <span id="netStatus" class="badge badge-online">Online</span>
         <button id="installBtn" class="btn btn-ghost btn-sm">
@@ -78,7 +102,166 @@
 
   <main class="container">
 
-    <!-- FORM INPUT -->
+    <!-- ================= MENU 1: BERANDA DESA ================= -->
+    <div class="menu-view" id="viewBeranda" role="tabpanel" aria-labelledby="tabBeranda">
+      
+      <!-- HERO BANNER -->
+      <section class="beranda-hero">
+        <div class="village-pill-badge">
+          <span class="dot-live"></span>
+          <span>Tirta Mandiri Kampung Sukamanah</span>
+        </div>
+        <h2 class="hero-main-title">
+          Kemandirian Air Bersih untuk <span class="gradient-text">Kesejahteraan Warga Desa</span>
+        </h2>
+        <p class="hero-desc">
+          Sistem Pengelolaan Air Minum dan Sanitasi Berbasis Masyarakat (PAMSIMAS) Kampung Sukamanah. Menjamin distribusi air bersih alami yang higienis, terjangkau, dan terkelola secara transparan untuk warga RT 05 &amp; RT 06.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="hero-actions-row">
+          <button type="button" class="btn btn-primary" data-switch-view="viewTagihan">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+            Hitung Tagihan Air
+          </button>
+          <button type="button" class="btn btn-outline" data-switch-view="viewStruktur">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            Lihat Pengurus KP-SPAMS
+          </button>
+          <button type="button" class="btn btn-ghost" data-switch-view="viewSetoran">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg>
+            Catat Setoran Warga
+          </button>
+        </div>
+
+        <!-- QUICK STATS -->
+        <div class="hero-stats-grid">
+          <div class="stat-item">
+            <span class="stat-num">120+</span>
+            <span class="stat-label">Rumah / KK Terlayani</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">2 Titik</span>
+            <span class="stat-label">Tandon Reservoir Utama</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">Rp 3.000</span>
+            <span class="stat-label">Tarif Gotong Royong / m³</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">24 Jam</span>
+            <span class="stat-label">Pasokan Air Mengalir</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- LATAR BELAKANG & SEJARAH DESA -->
+      <section class="beranda-section" aria-labelledby="storyHeading">
+        <div class="section-head-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--biru)" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <h2 id="storyHeading">Latar Belakang &amp; Nilai Swadaya Desa</h2>
+        </div>
+
+        <div class="village-story-card">
+          <div class="story-grid">
+            <div class="story-box">
+              <div class="story-box-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+              </div>
+              <h3>Dari Kebutuhan Menjadi Kemandirian</h3>
+              <p>
+                Sebelum program PAMSIMAS diresmikan di Kampung Sukamanah, warga sering mengalami kendala debit air saat musim kemarau panjang. Melalui musyawarah desa dan gotong royong, dibangunlah jaringan transmisi perpipaan mandiri dari sumber mata air alami pegunungan menuju bak penampung desa.
+              </p>
+            </div>
+
+            <div class="story-box">
+              <div class="story-box-icon" style="background:linear-gradient(135deg, #059669 0%, #10b981 100%);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h3>Dikelola Bersama Warga (KP-SPAMS)</h3>
+              <p>
+                Seluruh operasional dikelola secara nirlaba oleh Kelompok Pengelola Sarana Air Minum dan Sanitasi (KP-SPAMS) Sukamanah. Biaya pemakaian dan abonemen dialokasikan sepenuhnya untuk listrik pompa, perawatan pipa, kebersihan tandon, dan keberlangsungan jangka panjang.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 PILAR PELAYANAN AIR DESA -->
+      <section class="beranda-section" aria-labelledby="pilarHeading">
+        <div class="section-head-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--biru)" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          <h2 id="pilarHeading">Karakteristik &amp; Keunggulan Pelayanan</h2>
+        </div>
+
+        <div class="bento-grid">
+
+          <div class="bento-card">
+            <div class="bento-icon-wrapper"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.83z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+            <h3>Tarif Terbuka &amp; Terjangkau</h3>
+            <p>Biaya dihitung adil sesuai pemakaian riil: Abonemen Rp 3.000 + Rp 3.000 per meter kubik, tanpa markup atau biaya tersembunyi.</p>
+          </div>
+
+          <div class="bento-card">
+            <div class="bento-icon-wrapper"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+            <h3>Aplikasi Lapangan Offline</h3>
+            <p>Petugas RT dapat mencatat angka meter langsung di lokasi warga walau tanpa sinyal internet, data tersimpan otomatis di perangkat.</p>
+          </div>
+
+          <div class="bento-card">
+            <div class="bento-icon-wrapper"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+            <h3>Perawatan Cepat Tanggap</h3>
+            <p>Tim teknis swadaya siap siaga memeriksa kebocoran pipa jaringan dan melakukan pengurasan tandon penyaring secara berkala.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ALUR PENCATATAN & PEMBAYARAN -->
+      <section class="beranda-section" aria-labelledby="flowHeading">
+        <div class="section-head-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--biru)" aria-hidden="true"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          <h2 id="flowHeading">Alur Pelayanan Bulanan Warga</h2>
+        </div>
+
+        <div class="workflow-steps">
+          <div class="workflow-step-card">
+            <span class="step-badge">1</span>
+            <h4>Pencatatan Meter</h4>
+            <p>Petugas RT 05 &amp; RT 06 memeriksa angka meteran di tiap rumah warga pada tanggal 1–5 setiap bulan.</p>
+          </div>
+          <div class="workflow-step-card">
+            <span class="step-badge">2</span>
+            <h4>Kalkulasi Digital</h4>
+            <p>Input angka meter awal &amp; akhir pada web kalkulator untuk menghitung total pemakaian dan nominal rupiah.</p>
+          </div>
+          <div class="workflow-step-card">
+            <span class="step-badge">3</span>
+            <h4>Cetak Struk / Setoran</h4>
+            <p>Cetak struk resmi atau catat setoran cicilan dengan tanggal dan riwayat tersimpan rapi.</p>
+          </div>
+          <div class="workflow-step-card">
+            <span class="step-badge">4</span>
+            <h4>Laporan Rekap Excel</h4>
+            <p>Ekspor seluruh catatan tagihan dan setoran ke format Excel untuk arsip laporan pertanggungjawaban desa.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PEMBERITAHUAN DESA -->
+      <div class="village-notice-banner">
+        <div class="notice-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+        <div class="notice-content">
+          <h4>Informasi Operasional KP-SPAMS Sukamanah</h4>
+          <p>Jika ada kendala debit air kecil atau kebocoran pipa di lingkungan RT 05 / RT 06, segera laporkan ke Pengurus PAMSIMAS melalui nomor petugas wilayah terkait.</p>
+        </div>
+      </div>
+
+    </div><!-- /#viewBeranda -->
+
+    <!-- ================= MENU 2: TAGIHAN AIR ================= -->
+    <div class="menu-view" id="viewTagihan" role="tabpanel" aria-labelledby="tabTagihan" hidden>
+
+      <!-- FORM INPUT -->
     <section class="card" aria-labelledby="formTitle">
       <h2 id="formTitle" class="card-title">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--biru)" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
@@ -236,6 +419,295 @@
       </div>
     </section>
 
+    </div><!-- /#viewTagihan -->
+
+    <!-- ================= MENU 2: SETORAN (tanpa rumus — cicilan) ================= -->
+    <div class="menu-view" id="viewSetoran" role="tabpanel" aria-labelledby="tabSetoran" hidden>
+
+      <!-- FORM SETORAN -->
+      <section class="card" aria-labelledby="setoranFormTitle">
+        <h2 id="setoranFormTitle" class="card-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--hijau)" aria-hidden="true"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg>
+          Input Setoran
+        </h2>
+
+        <form id="setoranForm" novalidate>
+          <div class="field">
+            <label for="sNama">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Nama Pelanggan <span class="wajib">*</span>
+            </label>
+            <input type="text" id="sNama" maxlength="60" placeholder="cth. Siti Aminah" autocomplete="off" required aria-describedby="errSNama">
+            <small class="field-err" id="errSNama" role="alert"></small>
+          </div>
+
+          <div class="field">
+            <label for="sRt">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              RT <span class="optional">(opsional)</span>
+            </label>
+            <select id="sRt">
+              <option value="">Pilih RT</option>
+              <option value="RT 05">RT 05</option>
+              <option value="RT 06">RT 06</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="sJumlah">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Jumlah Setoran (Rp) <span class="wajib">*</span>
+            </label>
+            <input type="number" id="sJumlah" min="1" step="any" inputmode="decimal" placeholder="0" required aria-describedby="errSJumlah">
+            <small class="field-err" id="errSJumlah" role="alert"></small>
+          </div>
+
+          <div class="field">
+            <label for="sKet">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              Keterangan <span class="optional">(opsional)</span>
+            </label>
+            <input type="text" id="sKet" maxlength="100" placeholder="cth. Cicilan ke-2, bulan Maret" autocomplete="off">
+          </div>
+
+          <div class="formula-note" id="setoranNote">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <span>Tanpa rumus — nominal setoran dicatat apa adanya (untuk pembayaran cicilan).</span>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-success btn-block" id="sSaveBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+              Simpan Setoran
+            </button>
+            <button type="reset" class="btn btn-outline" id="sResetBtn">Bersihkan</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- RIWAYAT SETORAN -->
+      <section class="card" aria-labelledby="setoranHistTitle">
+        <div class="card-head">
+          <h2 id="setoranHistTitle" class="card-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--biru)" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Riwayat Setoran
+          </h2>
+          <div class="card-head-actions">
+            <span class="badge badge-count" id="sHistCount">0 entri</span>
+            <button type="button" class="btn btn-success btn-sm" id="sExportBtn" disabled>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Ekspor Excel
+            </button>
+            <button type="button" class="btn btn-danger-ghost btn-sm" id="sClearBtn" disabled>Hapus Semua</button>
+          </div>
+        </div>
+
+        <!-- EMPTY STATE -->
+        <div class="empty-state" id="sEmptyState">
+          <div class="empty-state-icon-wrap">
+            <svg class="empty-state-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/>
+              <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/>
+              <path d="M18 12a2 2 0 0 0 0 4h4v-4z"/>
+            </svg>
+          </div>
+          <h3 class="empty-state-title">Belum Ada Setoran</h3>
+          <p class="empty-state-text">Isi form setoran lalu tekan <strong>Simpan Setoran</strong> untuk mencatat pembayaran cicilan pelanggan.</p>
+        </div>
+
+        <div class="table-wrap" id="sTableWrap" hidden>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>RT</th>
+                <th>Setoran</th>
+                <th>Keterangan</th>
+                <th>Tanggal</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="sHistBody"></tbody>
+          </table>
+        </div>
+
+        <div class="summary" id="sSummary" hidden>
+          <span>Total Setoran: <strong id="sGrandTotal">Rp 0</strong></span>
+          <span id="sCountText">0 entri</span>
+        </div>
+      </section>
+
+    </div><!-- /#viewSetoran -->
+
+    <!-- ================= MENU 4: STRUKTUR ORGANISASI ================= -->
+    <div class="menu-view" id="viewStruktur" role="tabpanel" aria-labelledby="tabStruktur" hidden>
+
+      <!-- HEADER STRUKTUR -->
+      <section class="org-header-card">
+        <div class="org-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          KP-SPAMS Sukamanah • Periode Aktif
+        </div>
+        <h2 class="org-title">Struktur Organisasi Pengelola Air Bersih Desa</h2>
+        <p class="org-subtitle">
+          Susunan Kelompok Pengelola Sarana Prasarana Air Minum dan Sanitasi (KP-SPAMS) Kampung Sukamanah yang bertanggung jawab dalam kelancaran pasokan air dan transparansi keuangan warga.
+        </p>
+      </section>
+
+      <!-- BAGAN STRUKTUR HIERARKI -->
+      <div class="org-tree">
+
+        <!-- LEVEL 1: PELINDUNG / PENASEHAT -->
+        <div class="org-level org-level-advisor">
+          <div class="org-card card-advisor">
+            <div class="org-card-top">
+              <div class="org-avatar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div>
+                <span class="org-role-tag">Pelindung &amp; Penasehat</span>
+                <h3 class="org-name">Kepala Desa Sukamanah</h3>
+              </div>
+            </div>
+            <p class="org-duty">
+              Memberikan arahan kebijakan umum, perlindungan regulasi desa, dan pembinaan berkala dalam musyawarah warga.
+            </p>
+            <div class="org-tags-list">
+              <span class="org-subtag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Pemerintahan Desa</span>
+              <span class="org-subtag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Regulasi &amp; Legalitas</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- LEVEL 2: KETUA KP-SPAMS -->
+        <div class="org-level org-level-lead">
+          <div class="org-card card-leader">
+            <div class="org-card-top">
+              <div class="org-avatar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg></div>
+              <div>
+                <span class="org-role-tag">Ketua KP-SPAMS</span>
+                <h3 class="org-name">Lukman</h3>
+              </div>
+            </div>
+            <p class="org-duty">
+              Memimpin koordinasi operasional distribusi air, pengambilan keputusan taktis, dan pertanggungjawaban program kepada warga.
+            </p>
+            <div class="org-tags-list">
+              <span class="org-subtag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>Manajemen Operasional</span>
+              <span class="org-subtag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Koordinasi Antar RT</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- LEVEL 3: PENGURUS INTI (SEKRETARIS & BENDAHARA) -->
+        <div class="org-level org-level-core">
+          
+          <div class="org-card">
+            <div class="org-card-top">
+              <div class="org-avatar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg></div>
+              <div>
+                <span class="org-role-tag">Sekretaris KP-SPAMS</span>
+                <h3 class="org-name">ZaskiaJD</h3>
+              </div>
+            </div>
+            <p class="org-duty">
+              Mengelola data administrasi pelanggan, dokumentasi berkas operasional, notulensi musyawarah, dan penyusunan arsip.
+            </p>
+            <div class="org-tags-list">
+              <span class="org-subtag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>Pendataan Pelanggan</span>
+              <span class="org-subtag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>Administrasi &amp; Surat</span>
+            </div>
+          </div>
+
+          <div class="org-card">
+            <div class="org-card-top">
+              <div class="org-avatar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+              <div>
+                <span class="org-role-tag">Bendahara KP-SPAMS</span>
+                <h3 class="org-name">Pengelola Kas &amp; Keuangan</h3>
+              </div>
+            </div>
+            <p class="org-duty">
+              Mencatat setoran iuran warga, mengelola pembukuan kas pemeliharaan listrik &amp; pompa, serta menyusun rekapitulasi keuangan.
+            </p>
+            <div class="org-tags-list">
+              <span class="org-subtag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Pembukuan Kas</span>
+              <span class="org-subtag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Transparansi Iuran</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- LEVEL 4: OPERASIONAL & PETUGAS LAPANGAN WILAYAH -->
+        <div class="org-level org-level-operational">
+          
+          <div class="org-card card-tech">
+            <div class="org-card-top">
+              <div class="org-avatar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+              <div>
+                <span class="org-role-tag">Unit Teknis &amp; Jaringan</span>
+                <h3 class="org-name">Tim Pemeliharaan Pipa</h3>
+              </div>
+            </div>
+            <p class="org-duty">
+              Memeriksa kontinuitas aliran tandon, filter penyaring air, perbaikan sambungan pipa bocor, dan perawatan jalur utama.
+            </p>
+            <div class="org-tags-list">
+              <span class="org-subtag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>Kontrol Tandon</span>
+              <span class="org-subtag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Perbaikan Pipa</span>
+            </div>
+          </div>
+
+          <div class="org-card card-field">
+            <div class="org-card-top">
+              <div class="org-avatar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+              <div>
+                <span class="org-role-tag">Pencatat &amp; Layanan RT 05</span>
+                <h3 class="org-name">Koordinator Wilayah RT 05</h3>
+              </div>
+            </div>
+            <p class="org-duty">
+              Melakukan pencatatan meter bulanan ke rumah warga RT 05, menerima setoran cicilan, dan meneruskan laporan warga.
+            </p>
+            <div class="org-tags-list">
+              <span class="org-subtag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Wilayah RT 05</span>
+              <span class="org-subtag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Catat Meter Bulanan</span>
+            </div>
+          </div>
+
+          <div class="org-card card-field">
+            <div class="org-card-top">
+              <div class="org-avatar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+              <div>
+                <span class="org-role-tag">Pencatat &amp; Layanan RT 06</span>
+                <h3 class="org-name">Koordinator Wilayah RT 06</h3>
+              </div>
+            </div>
+            <p class="org-duty">
+              Melakukan pencatatan meter bulanan ke rumah warga RT 06, menerima setoran cicilan, dan meneruskan laporan warga.
+            </p>
+            <div class="org-tags-list">
+              <span class="org-subtag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Wilayah RT 06</span>
+              <span class="org-subtag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Catat Meter Bulanan</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- KARTU AKUNTABILITAS & PENGADUAN WARGA -->
+      <section class="transparency-note-card">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--hijau)" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+          Komitmen Pelayanan &amp; Transparansi Warga
+        </h3>
+        <p>
+          KP-SPAMS Sukamanah berpegang teguh pada prinsip keterbukaan, kebersamaan, dan akuntabilitas. Setiap rupiah dari tarif abonemen dan pemakaian air digunakan untuk kepentingan bersama warga Kampung Sukamanah demi kelancaran pasokan air bersih yang berkelanjutan.
+        </p>
+      </section>
+
+    </div><!-- /#viewStruktur -->
+
   </main>
 
   <!-- STRUK (hanya tampil saat cetak) -->
@@ -245,6 +717,7 @@
         <img src="icons/icon.svg" alt="" width="44" height="44">
         <div>
           <h3>PAMSIMAS</h3>
+          <p class="receipt-village">Kampung Sukamanah</p>
           <p>Penyediaan Air Minum &amp; Sanitasi Masyarakat</p>
         </div>
       </div>
@@ -302,5 +775,6 @@
   <script src="js/export.js"></script>
   <script src="js/receipt.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/setoran.js"></script>
 </body>
 </html>

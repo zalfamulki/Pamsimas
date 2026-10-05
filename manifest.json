@@ -1,7 +1,7 @@
 {
-  "name": "PAMSIMAS — Kalkulator Tagihan Air",
+  "name": "PAMSIMAS — Kampung Sukamanah",
   "short_name": "PAMSIMAS",
-  "description": "Hitung tagihan air PAMSIMAS dari meter awal & akhir, cetak struk, dan ekspor ke Excel. Bekerja offline.",
+  "description": "PAMSIMAS Kampung Sukamanah: hitung tagihan dari meter awal & akhir, cetak struk, dan ekspor ke Excel. Bekerja offline.",
   "lang": "id",
   "start_url": "./index.html",
   "scope": "./",
