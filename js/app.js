@@ -21,7 +21,7 @@
   window.App = { toast: toast };
 
   /* ============ Navbar: pengalihan menu ============ */
-  const navTabs = document.querySelectorAll('.nav-tab');
+  const navTabs = document.querySelectorAll('.nav-tab, .mmenu-item');
   const menuViews = document.querySelectorAll('.menu-view');
 
   function showView(viewId) {
@@ -66,6 +66,37 @@
   else if (location.hash === '#setoran') showView('viewSetoran');
   else if (location.hash === '#struktur') showView('viewStruktur');
   else showView('viewBeranda');
+
+  /* ============ Menu mobile hamburger (khusus HP) ============ */
+  const menuBtn = $('menuBtn');
+  const mobileMenu = $('mobileMenu');
+  const menuScrim = $('menuScrim');
+
+  function setMobileMenu(open) {
+    mobileMenu.hidden = !open;
+    menuScrim.hidden = !open;
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuBtn.classList.toggle('open', open);
+  }
+
+  menuScrim.addEventListener('click', function () { setMobileMenu(false); });
+
+  menuBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    setMobileMenu(mobileMenu.hidden);
+  });
+  document.querySelectorAll('.mmenu-item').forEach(function (item) {
+    item.addEventListener('click', function () { setMobileMenu(false); });
+  });
+  document.addEventListener('click', function (e) {
+    if (!mobileMenu.hidden && !mobileMenu.contains(e.target)) setMobileMenu(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !mobileMenu.hidden) {
+      setMobileMenu(false);
+      menuBtn.focus();
+    }
+  });
 
   /* ============ Form Hitung ============ */
   const form = $('billForm');
